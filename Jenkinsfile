@@ -25,6 +25,9 @@ pipeline {
                     // Archive the artifacts
                     archiveArtifacts '**/*.war'
 
+                    // checkstye report
+                    junit '**/surefire-reports/*.xml'
+
                     // deploy
                     build 'deploy'
                 }
