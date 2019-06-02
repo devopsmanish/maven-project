@@ -32,7 +32,7 @@ pipeline {
             steps {
                 echo "Deploy stage"
                 timeout(time: 60, unit: 'SECONDS') {
-                    input 'Do you want to deploy your code'
+                    input message: 'Do you want to deploy your code', ok: 'Ok'
                 }
                 // deploy
                 build 'deploy'
