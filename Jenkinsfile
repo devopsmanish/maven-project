@@ -31,6 +31,9 @@ pipeline {
         stage('deploy') {
             steps {
                 echo "Deploy stage"
+                timeout(time: 60, unit: 'SECONDS') {
+                    input 'Do you want to deploy your code'
+                }
                 // deploy
                 build 'deploy'
             }
