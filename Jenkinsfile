@@ -8,17 +8,12 @@ pipeline {
         stage('init') {
             steps {
                 echo "Init stage"
-                sh label: '', script: 'mvn clean package checkstyle:checkstyle'
             }
         }
         stage('build') {
             steps {
                 echo "Buid stage"
-                //artficat
-                //junit check style
-                // build other project
-
-
+                sh label: '', script: 'mvn clean package checkstyle:checkstyle'
             }
             post {
                 success {
@@ -26,17 +21,18 @@ pipeline {
                     archiveArtifacts '**/*.war'
 
                     // checkstye report
-                    junit '**/surefire-reports/*.xml'
+                    checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
 
-                    // deploy
-                    build 'deploy'
+                   /// test analysis result
+                    junit '**/surefire-reports/*.xml'
                 }
             }
         }
         stage('deploy') {
             steps {
                 echo "Deploy stage"
-
+                // deploy
+                build 'deploy'
             }
         }
 
