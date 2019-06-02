@@ -1,17 +1,18 @@
-pipeline{
-    stages{
-        stage('init'){
-            steps{
+pipeline {
+    agent {any}
+    stages {
+        stage('init') {
+            steps {
                 echo "Init stage"
             }
         }
-        stage('build'){
-            steps{
+        stage('build') {
+            steps {
                 echo "Buid stage"
             }
         }
-        stage('deploy'){
-            steps{
+        stage('deploy') {
+            steps {
                 echo "Deploy stage"
             }
         }
