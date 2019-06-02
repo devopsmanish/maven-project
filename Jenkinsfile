@@ -14,7 +14,20 @@ pipeline {
         stage('build') {
             steps {
                 echo "Buid stage"
+                //artficat
+                //junit check style
+                // build other project
 
+
+            }
+            post {
+                success {
+                    // Archive the artifacts
+                    archiveArtifacts '**/*.war'
+
+                    // deploy
+                    build 'deploy'
+                }
             }
         }
         stage('deploy') {
