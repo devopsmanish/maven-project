@@ -1,22 +1,26 @@
 pipeline {
     agent any
+    tools {
+        jkd 'java8'
+        maven 'maven3'
+    }
     stages {
         stage('init') {
             steps {
                 echo "Init stage"
-                git --version
+                sh label: '', script: 'mvn clean package checkstyle:checkstyle'
             }
         }
         stage('build') {
             steps {
                 echo "Buid stage"
-                git --version
+
             }
         }
         stage('deploy') {
             steps {
                 echo "Deploy stage"
-                git --version
+
             }
         }
 
